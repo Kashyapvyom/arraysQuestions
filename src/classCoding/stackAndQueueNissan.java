@@ -1,11 +1,5 @@
 package classCoding;
 
-import java.util.Scanner;
-import java.util.Stack;
-
-public class stackAndQueueNissan {
-
-
     /*
     You are given a stack of N integers such that the first element represents the top of the stack and the last element represents the bottom of the stack. You need to pop at least one element from the stack. At any one moment, you can convert stack into a queue. The bottom of the stack represents the front of the queue. You cannot convert the queue back into a stack. Your task is to remove exactly K elements such that the sum of the K removed elements is maximised.
 
@@ -18,13 +12,27 @@ Output format :
 Print the maximum possible sum of the K removed elements
      */
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n=sc.nextInt();
-        int k=sc.nextInt();
-        Stack<Integer> s1= new Stack<Integer>();
-        for(int i=0;i<s1.toArray().length;i++){
+import java.util.*;
 
+public class stackAndQueueNissan {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int k = sc.nextInt();
+        int[] arr = new int[n];
+        for(int i = 0; i < n; i++)
+            arr[i] = sc.nextInt();
+        int maxSum = 0;
+        for(int i = 0; i <= k; i++) {
+            int sum = 0;
+            for(int j = 0; j < i; j++)
+                sum += arr[j];
+            for(int j = 0; j < (k - i); j++)
+                sum += arr[n - 1 - j];
+            maxSum = Math.max(maxSum, sum);
         }
+        System.out.println(maxSum);
     }
 }
